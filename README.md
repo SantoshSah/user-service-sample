@@ -1,4 +1,4 @@
-# Please note that this repo is a sample used for demonstrating code structure. Though it builds successfully but can not be used in production.
+# Please note that this repo is a sample used for demonstrating code structure. Though it builds successfully, it can not be used in production.
 
 # Building server and client
  - to build server: go build ./cmd/user_server
