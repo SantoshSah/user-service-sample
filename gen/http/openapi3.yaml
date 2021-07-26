@@ -1,0 +1,1685 @@
+openapi: 3.0.3
+info:
+  title: user Service
+  description: Service for managing users
+  version: 1.0.0
+servers:
+- url: http://0.0.0.0:8120
+paths:
+  /changePassword:
+    post:
+      tags:
+      - user_service
+      summary: changePassword user_service
+      operationId: user_service#changePassword
+      parameters:
+      - name: tenant
+        in: header
+        description: Tenant Header Name
+        allowEmptyValue: true
+        required: true
+        schema:
+          type: string
+          description: Tenant Header Name
+          example: tenant2
+          enum:
+          - tenant1
+          - tenant2
+        example: tenant2
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordRequestBody'
+            example:
+              password: Id magni ad alias quasi nulla.
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Userresult'
+              example:
+                accessToken: Pariatur deserunt dolores hic neque illo.
+                email: Reprehenderit cupiditate.
+                hasAgreed: false
+                id: Odit ratione eum repudiandae nobis ut.
+                isActive: true
+                isVerified: true
+                name: Atque in praesentium ab sapiente et recusandae.
+                refreshToken: Aut dicta molestiae autem repudiandae illo beatae.
+                roles:
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+        "400":
+          description: ""
+          content:
+            application/vnd.goa.error:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                fault: false
+                id: 123abc
+                message: parameter 'p' must be an integer
+                name: bad_request
+                temporary: false
+                timeout: false
+        "404":
+          description: ""
+          content:
+            application/vnd.goa.error:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                fault: true
+                id: 123abc
+                message: parameter 'p' must be an integer
+                name: bad_request
+                temporary: false
+                timeout: false
+      security:
+      - jwt_header_Authorization:
+        - system:write
+        - system:read
+  /listUsers:
+    post:
+      tags:
+      - user_service
+      summary: listUsers user_service
+      operationId: user_service#listUsers
+      parameters:
+      - name: tenant
+        in: header
+        description: Tenant Header Name
+        allowEmptyValue: true
+        required: true
+        schema:
+          type: string
+          description: Tenant Header Name
+          example: tenant2
+          enum:
+          - tenant1
+          - tenant2
+        example: tenant1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListUsersRequestBody'
+            example:
+              email: Voluptas quia autem labore.
+              hasAgreed: Quaerat aut magni sed.
+              isActive: Ea eaque.
+              isVerified: Aut odio et aperiam hic voluptas.
+              mobileNumber: At aut accusamus.
+              name: Laudantium modi consequuntur ullam quibusdam.
+              pageNumber: 7059810287301451764
+              pageSize: 4403827665034951324
+              role: Debitis sint dolore.
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListUsersResponseBody'
+              example:
+                pageInfo:
+                  count: 626893420517031239
+                  pageNumber: 5532203103038985657
+                  pageSize: 3866578284643206120
+                  totalCount: 4301609621647617702
+                results:
+                - accessToken: Aut dolorem ipsam.
+                  email: Et at et libero iusto earum.
+                  hasAgreed: false
+                  id: Reiciendis qui.
+                  isActive: false
+                  isVerified: true
+                  name: Sint laboriosam qui quo iste.
+                  refreshToken: Est in ut.
+                  roles:
+                  - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                    isActive: true
+                    role:
+                      id: Voluptas est.
+                      isActive: false
+                      name: Soluta qui aut et ut nisi autem.
+                      serviceId: Veritatis quae hic unde non repudiandae.
+                    roleID: Officia voluptates.
+                    userID: Ad exercitationem facilis sit incidunt.
+                  - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                    isActive: true
+                    role:
+                      id: Voluptas est.
+                      isActive: false
+                      name: Soluta qui aut et ut nisi autem.
+                      serviceId: Veritatis quae hic unde non repudiandae.
+                    roleID: Officia voluptates.
+                    userID: Ad exercitationem facilis sit incidunt.
+                  - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                    isActive: true
+                    role:
+                      id: Voluptas est.
+                      isActive: false
+                      name: Soluta qui aut et ut nisi autem.
+                      serviceId: Veritatis quae hic unde non repudiandae.
+                    roleID: Officia voluptates.
+                    userID: Ad exercitationem facilis sit incidunt.
+                - accessToken: Aut dolorem ipsam.
+                  email: Et at et libero iusto earum.
+                  hasAgreed: false
+                  id: Reiciendis qui.
+                  isActive: false
+                  isVerified: true
+                  name: Sint laboriosam qui quo iste.
+                  refreshToken: Est in ut.
+                  roles:
+                  - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                    isActive: true
+                    role:
+                      id: Voluptas est.
+                      isActive: false
+                      name: Soluta qui aut et ut nisi autem.
+                      serviceId: Veritatis quae hic unde non repudiandae.
+                    roleID: Officia voluptates.
+                    userID: Ad exercitationem facilis sit incidunt.
+                  - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                    isActive: true
+                    role:
+                      id: Voluptas est.
+                      isActive: false
+                      name: Soluta qui aut et ut nisi autem.
+                      serviceId: Veritatis quae hic unde non repudiandae.
+                    roleID: Officia voluptates.
+                    userID: Ad exercitationem facilis sit incidunt.
+                  - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                    isActive: true
+                    role:
+                      id: Voluptas est.
+                      isActive: false
+                      name: Soluta qui aut et ut nisi autem.
+                      serviceId: Veritatis quae hic unde non repudiandae.
+                    roleID: Officia voluptates.
+                    userID: Ad exercitationem facilis sit incidunt.
+                - accessToken: Aut dolorem ipsam.
+                  email: Et at et libero iusto earum.
+                  hasAgreed: false
+                  id: Reiciendis qui.
+                  isActive: false
+                  isVerified: true
+                  name: Sint laboriosam qui quo iste.
+                  refreshToken: Est in ut.
+                  roles:
+                  - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                    isActive: true
+                    role:
+                      id: Voluptas est.
+                      isActive: false
+                      name: Soluta qui aut et ut nisi autem.
+                      serviceId: Veritatis quae hic unde non repudiandae.
+                    roleID: Officia voluptates.
+                    userID: Ad exercitationem facilis sit incidunt.
+                  - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                    isActive: true
+                    role:
+                      id: Voluptas est.
+                      isActive: false
+                      name: Soluta qui aut et ut nisi autem.
+                      serviceId: Veritatis quae hic unde non repudiandae.
+                    roleID: Officia voluptates.
+                    userID: Ad exercitationem facilis sit incidunt.
+                  - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                    isActive: true
+                    role:
+                      id: Voluptas est.
+                      isActive: false
+                      name: Soluta qui aut et ut nisi autem.
+                      serviceId: Veritatis quae hic unde non repudiandae.
+                    roleID: Officia voluptates.
+                    userID: Ad exercitationem facilis sit incidunt.
+        "400":
+          description: ""
+          content:
+            application/vnd.goa.error:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                fault: false
+                id: 123abc
+                message: parameter 'p' must be an integer
+                name: bad_request
+                temporary: true
+                timeout: false
+        "404":
+          description: ""
+          content:
+            application/vnd.goa.error:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                fault: true
+                id: 123abc
+                message: parameter 'p' must be an integer
+                name: bad_request
+                temporary: false
+                timeout: false
+      security:
+      - jwt_header_Authorization:
+        - system:write
+        - system:read
+  /login:
+    post:
+      tags:
+      - user_service
+      summary: login user_service
+      operationId: user_service#login
+      parameters:
+      - name: tenant
+        in: header
+        description: Tenant Header Name
+        allowEmptyValue: true
+        required: true
+        schema:
+          type: string
+          description: Tenant Header Name
+          example: tenant1
+          enum:
+          - tenant1
+          - tenant2
+        example: tenant2
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequestBody'
+            example:
+              email: Reprehenderit impedit laborum sed iure voluptatem dolorem.
+              password: Omnis laudantium sed molestias quia rerum omnis.
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Userresult'
+              example:
+                accessToken: Ea cupiditate.
+                email: Distinctio aliquam rerum consequatur repellat expedita aut.
+                hasAgreed: true
+                id: Placeat ipsa ad.
+                isActive: false
+                isVerified: true
+                name: Fuga quia quidem.
+                refreshToken: Tempora itaque et dignissimos voluptatum.
+                roles:
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+        "400":
+          description: ""
+          content:
+            application/vnd.goa.error:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                fault: false
+                id: 123abc
+                message: parameter 'p' must be an integer
+                name: bad_request
+                temporary: false
+                timeout: false
+        "404":
+          description: ""
+          content:
+            application/vnd.goa.error:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                fault: true
+                id: 123abc
+                message: parameter 'p' must be an integer
+                name: bad_request
+                temporary: false
+                timeout: true
+  /logout:
+    post:
+      tags:
+      - user_service
+      summary: logout user_service
+      operationId: user_service#logout
+      parameters:
+      - name: tenant
+        in: header
+        description: Tenant Header Name
+        allowEmptyValue: true
+        required: true
+        schema:
+          type: string
+          description: Tenant Header Name
+          example: tenant2
+          enum:
+          - tenant1
+          - tenant2
+        example: tenant1
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResult'
+              example:
+                desc: Libero quia.
+                type: Ullam omnis et.
+        "400":
+          description: ""
+          content:
+            application/vnd.goa.error:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                fault: true
+                id: 123abc
+                message: parameter 'p' must be an integer
+                name: bad_request
+                temporary: false
+                timeout: false
+        "404":
+          description: ""
+          content:
+            application/vnd.goa.error:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                fault: true
+                id: 123abc
+                message: parameter 'p' must be an integer
+                name: bad_request
+                temporary: true
+                timeout: true
+      security:
+      - jwt_header_Authorization:
+        - system:write
+        - system:read
+  /openapi.yaml:
+    get:
+      tags:
+      - user_service
+      summary: Download ./gen/http/openapi.yaml
+      operationId: user_service#/openapi.yaml
+      responses:
+        "200":
+          description: File downloaded
+  /refreshAccessToken:
+    post:
+      tags:
+      - user_service
+      summary: refreshAccessToken user_service
+      operationId: user_service#refreshAccessToken
+      parameters:
+      - name: tenant
+        in: header
+        description: Tenant Header Name
+        allowEmptyValue: true
+        required: true
+        schema:
+          type: string
+          description: Tenant Header Name
+          example: tenant1
+          enum:
+          - tenant1
+          - tenant2
+        example: tenant1
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Userresult'
+              example:
+                accessToken: Dolor est eius repellendus asperiores distinctio.
+                email: Sunt quos fuga quaerat.
+                hasAgreed: false
+                id: Consequatur repudiandae repudiandae consectetur molestiae ratione.
+                isActive: true
+                isVerified: true
+                name: Voluptatem facilis.
+                refreshToken: Aut et dolore quaerat alias.
+                roles:
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+        "400":
+          description: ""
+          content:
+            application/vnd.goa.error:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                fault: false
+                id: 123abc
+                message: parameter 'p' must be an integer
+                name: bad_request
+                temporary: false
+                timeout: false
+        "404":
+          description: ""
+          content:
+            application/vnd.goa.error:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                fault: false
+                id: 123abc
+                message: parameter 'p' must be an integer
+                name: bad_request
+                temporary: false
+                timeout: true
+      security:
+      - jwt_header_Authorization:
+        - system:write
+        - system:read
+  /resetPassword:
+    post:
+      tags:
+      - user_service
+      summary: resetPassword user_service
+      operationId: user_service#resetPassword
+      parameters:
+      - name: tenant
+        in: header
+        description: Tenant Header Name
+        allowEmptyValue: true
+        required: true
+        schema:
+          type: string
+          description: Tenant Header Name
+          example: tenant2
+          enum:
+          - tenant1
+          - tenant2
+        example: tenant1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignupRequestBody'
+            example:
+              email: Rerum non eligendi dolorem.
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Userresult'
+              example:
+                accessToken: Quae nobis quia qui sapiente.
+                email: Hic vero adipisci earum.
+                hasAgreed: true
+                id: Quo saepe eum molestiae illum totam est.
+                isActive: false
+                isVerified: false
+                name: Et eius sed impedit.
+                refreshToken: Amet natus eos aut cupiditate.
+                roles:
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+        "400":
+          description: ""
+          content:
+            application/vnd.goa.error:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                fault: false
+                id: 123abc
+                message: parameter 'p' must be an integer
+                name: bad_request
+                temporary: false
+                timeout: true
+        "404":
+          description: ""
+          content:
+            application/vnd.goa.error:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                fault: true
+                id: 123abc
+                message: parameter 'p' must be an integer
+                name: bad_request
+                temporary: true
+                timeout: false
+  /signup:
+    post:
+      tags:
+      - user_service
+      summary: signup user_service
+      operationId: user_service#signup
+      parameters:
+      - name: tenant
+        in: header
+        description: Tenant Header Name
+        allowEmptyValue: true
+        required: true
+        schema:
+          type: string
+          description: Tenant Header Name
+          example: tenant2
+          enum:
+          - tenant1
+          - tenant2
+        example: tenant2
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignupRequestBody'
+            example:
+              email: Delectus alias quis perferendis culpa expedita.
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Userresult'
+              example:
+                accessToken: Facere est sequi numquam.
+                email: Modi voluptatem minima quasi rerum tempora.
+                hasAgreed: true
+                id: Fugit doloremque quibusdam recusandae molestiae.
+                isActive: false
+                isVerified: true
+                name: Consequatur et cumque consequatur rem eos.
+                refreshToken: Quibusdam quia facere.
+                roles:
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+        "400":
+          description: ""
+          content:
+            application/vnd.goa.error:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                fault: false
+                id: 123abc
+                message: parameter 'p' must be an integer
+                name: bad_request
+                temporary: true
+                timeout: false
+        "404":
+          description: ""
+          content:
+            application/vnd.goa.error:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                fault: false
+                id: 123abc
+                message: parameter 'p' must be an integer
+                name: bad_request
+                temporary: true
+                timeout: false
+  /updateUsername:
+    post:
+      tags:
+      - user_service
+      summary: updateUsername user_service
+      operationId: user_service#updateUsername
+      parameters:
+      - name: tenant
+        in: header
+        description: Tenant Header Name
+        allowEmptyValue: true
+        required: true
+        schema:
+          type: string
+          description: Tenant Header Name
+          example: tenant1
+          enum:
+          - tenant1
+          - tenant2
+        example: tenant1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUsernameRequestBody'
+            example:
+              name: Sed molestias voluptas adipisci eius et fuga.
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Userresult'
+              example:
+                accessToken: Itaque sit rerum rem error ea distinctio.
+                email: Autem eum voluptas error nihil ratione a.
+                hasAgreed: false
+                id: Non perspiciatis accusantium qui illum quos consequatur.
+                isActive: false
+                isVerified: false
+                name: Neque autem ut corrupti aliquam unde recusandae.
+                refreshToken: Exercitationem sed.
+                roles:
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+        "400":
+          description: ""
+          content:
+            application/vnd.goa.error:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                fault: false
+                id: 123abc
+                message: parameter 'p' must be an integer
+                name: bad_request
+                temporary: true
+                timeout: true
+        "404":
+          description: ""
+          content:
+            application/vnd.goa.error:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                fault: false
+                id: 123abc
+                message: parameter 'p' must be an integer
+                name: bad_request
+                temporary: false
+                timeout: true
+      security:
+      - jwt_header_Authorization:
+        - system:write
+        - system:read
+  /verifyConfirmationToken:
+    post:
+      tags:
+      - user_service
+      summary: verifyConfirmationToken user_service
+      operationId: user_service#verifyConfirmationToken
+      parameters:
+      - name: tenant
+        in: header
+        description: Tenant Header Name
+        allowEmptyValue: true
+        required: true
+        schema:
+          type: string
+          description: Tenant Header Name
+          example: tenant1
+          enum:
+          - tenant1
+          - tenant2
+        example: tenant2
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyConfirmationTokenRequestBody'
+            example:
+              confirmationToken: 1634527523334669514
+              userId: In vitae omnis.
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Userresult'
+              example:
+                accessToken: Velit aut a eum ipsam.
+                email: Hic facere non.
+                hasAgreed: false
+                id: Et mollitia qui possimus quod.
+                isActive: false
+                isVerified: true
+                name: Quo temporibus et id voluptas facilis.
+                refreshToken: Beatae nihil tempore consequatur libero nemo.
+                roles:
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+        "400":
+          description: ""
+          content:
+            application/vnd.goa.error:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                fault: true
+                id: 123abc
+                message: parameter 'p' must be an integer
+                name: bad_request
+                temporary: false
+                timeout: true
+        "404":
+          description: ""
+          content:
+            application/vnd.goa.error:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                fault: false
+                id: 123abc
+                message: parameter 'p' must be an integer
+                name: bad_request
+                temporary: false
+                timeout: true
+  /verifyPasswordResetToken:
+    post:
+      tags:
+      - user_service
+      summary: verifyPasswordResetToken user_service
+      operationId: user_service#verifyPasswordResetToken
+      parameters:
+      - name: tenant
+        in: header
+        description: Tenant Header Name
+        allowEmptyValue: true
+        required: true
+        schema:
+          type: string
+          description: Tenant Header Name
+          example: tenant1
+          enum:
+          - tenant1
+          - tenant2
+        example: tenant1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyPasswordResetTokenRequestBody'
+            example:
+              passwordResetToken: 1125933082736075628
+              userId: Nisi quibusdam ut omnis ipsa aut.
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Userresult'
+              example:
+                accessToken: Qui dignissimos.
+                email: Molestias iste.
+                hasAgreed: true
+                id: Delectus ut.
+                isActive: false
+                isVerified: true
+                name: Animi necessitatibus deleniti veritatis repellendus.
+                refreshToken: Distinctio non qui in.
+                roles:
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+                - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+                  isActive: true
+                  role:
+                    id: Voluptas est.
+                    isActive: false
+                    name: Soluta qui aut et ut nisi autem.
+                    serviceId: Veritatis quae hic unde non repudiandae.
+                  roleID: Officia voluptates.
+                  userID: Ad exercitationem facilis sit incidunt.
+        "400":
+          description: ""
+          content:
+            application/vnd.goa.error:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                fault: false
+                id: 123abc
+                message: parameter 'p' must be an integer
+                name: bad_request
+                temporary: true
+                timeout: false
+        "404":
+          description: ""
+          content:
+            application/vnd.goa.error:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                fault: false
+                id: 123abc
+                message: parameter 'p' must be an integer
+                name: bad_request
+                temporary: true
+                timeout: true
+components:
+  schemas:
+    ChangePasswordRequestBody:
+      type: object
+      properties:
+        password:
+          type: string
+          description: User password
+          example: Et porro aliquid non possimus unde aut.
+      example:
+        password: Repudiandae aspernatur.
+      required:
+      - password
+    Error:
+      type: object
+      properties:
+        fault:
+          type: boolean
+          description: Is the error a server-side fault?
+          example: false
+        id:
+          type: string
+          description: ID is a unique identifier for this particular occurrence of the problem.
+          example: 123abc
+        message:
+          type: string
+          description: Message is a human-readable explanation specific to this occurrence of the problem.
+          example: parameter 'p' must be an integer
+        name:
+          type: string
+          description: Name is the name of this class of errors.
+          example: bad_request
+        temporary:
+          type: boolean
+          description: Is the error temporary?
+          example: true
+        timeout:
+          type: boolean
+          description: Is the error a timeout?
+          example: true
+      example:
+        fault: false
+        id: 123abc
+        message: parameter 'p' must be an integer
+        name: bad_request
+        temporary: true
+        timeout: true
+      required:
+      - name
+      - id
+      - message
+      - temporary
+      - timeout
+      - fault
+    ListUsersRequestBody:
+      type: object
+      properties:
+        email:
+          type: string
+          description: User email for search
+          example: Ut nostrum odio rem.
+        hasAgreed:
+          type: string
+          description: If user has agreed
+          example: Assumenda incidunt fugit omnis totam.
+        isActive:
+          type: string
+          description: If user is active
+          example: Consequatur facilis non nam quo est assumenda.
+        isVerified:
+          type: string
+          description: If user is verified
+          example: Qui ut et ipsa eos.
+        mobileNumber:
+          type: string
+          description: User mobile number for search
+          example: Dignissimos at nisi impedit quidem.
+        name:
+          type: string
+          description: User name for search
+          example: Corrupti quam mollitia aut rerum.
+        pageNumber:
+          type: integer
+          description: Page Number for search
+          example: 6227703652370386027
+          format: int64
+        pageSize:
+          type: integer
+          description: pageSize per page
+          example: 5746170359132554653
+          format: int64
+        role:
+          type: string
+          description: User Role
+          example: Amet ducimus.
+      example:
+        email: Sequi eius tempore.
+        hasAgreed: Aut ea ratione.
+        isActive: Vel est dolorem accusamus earum maiores accusantium.
+        isVerified: Ratione temporibus voluptas assumenda aut a.
+        mobileNumber: Maxime quod sunt illum.
+        name: Non ex culpa.
+        pageNumber: 8126446668008037413
+        pageSize: 7744364864616488668
+        role: Autem sed temporibus possimus recusandae quae.
+    ListUsersResponseBody:
+      type: object
+      properties:
+        pageInfo:
+          $ref: '#/components/schemas/Pageinfo'
+        results:
+          $ref: '#/components/schemas/UserresultCollection'
+      example:
+        pageInfo:
+          count: 626893420517031239
+          pageNumber: 5532203103038985657
+          pageSize: 3866578284643206120
+          totalCount: 4301609621647617702
+        results:
+        - accessToken: Aut dolorem ipsam.
+          email: Et at et libero iusto earum.
+          hasAgreed: false
+          id: Reiciendis qui.
+          isActive: false
+          isVerified: true
+          name: Sint laboriosam qui quo iste.
+          refreshToken: Est in ut.
+          roles:
+          - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+            isActive: true
+            role:
+              id: Voluptas est.
+              isActive: false
+              name: Soluta qui aut et ut nisi autem.
+              serviceId: Veritatis quae hic unde non repudiandae.
+            roleID: Officia voluptates.
+            userID: Ad exercitationem facilis sit incidunt.
+          - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+            isActive: true
+            role:
+              id: Voluptas est.
+              isActive: false
+              name: Soluta qui aut et ut nisi autem.
+              serviceId: Veritatis quae hic unde non repudiandae.
+            roleID: Officia voluptates.
+            userID: Ad exercitationem facilis sit incidunt.
+          - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+            isActive: true
+            role:
+              id: Voluptas est.
+              isActive: false
+              name: Soluta qui aut et ut nisi autem.
+              serviceId: Veritatis quae hic unde non repudiandae.
+            roleID: Officia voluptates.
+            userID: Ad exercitationem facilis sit incidunt.
+        - accessToken: Aut dolorem ipsam.
+          email: Et at et libero iusto earum.
+          hasAgreed: false
+          id: Reiciendis qui.
+          isActive: false
+          isVerified: true
+          name: Sint laboriosam qui quo iste.
+          refreshToken: Est in ut.
+          roles:
+          - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+            isActive: true
+            role:
+              id: Voluptas est.
+              isActive: false
+              name: Soluta qui aut et ut nisi autem.
+              serviceId: Veritatis quae hic unde non repudiandae.
+            roleID: Officia voluptates.
+            userID: Ad exercitationem facilis sit incidunt.
+          - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+            isActive: true
+            role:
+              id: Voluptas est.
+              isActive: false
+              name: Soluta qui aut et ut nisi autem.
+              serviceId: Veritatis quae hic unde non repudiandae.
+            roleID: Officia voluptates.
+            userID: Ad exercitationem facilis sit incidunt.
+          - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+            isActive: true
+            role:
+              id: Voluptas est.
+              isActive: false
+              name: Soluta qui aut et ut nisi autem.
+              serviceId: Veritatis quae hic unde non repudiandae.
+            roleID: Officia voluptates.
+            userID: Ad exercitationem facilis sit incidunt.
+        - accessToken: Aut dolorem ipsam.
+          email: Et at et libero iusto earum.
+          hasAgreed: false
+          id: Reiciendis qui.
+          isActive: false
+          isVerified: true
+          name: Sint laboriosam qui quo iste.
+          refreshToken: Est in ut.
+          roles:
+          - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+            isActive: true
+            role:
+              id: Voluptas est.
+              isActive: false
+              name: Soluta qui aut et ut nisi autem.
+              serviceId: Veritatis quae hic unde non repudiandae.
+            roleID: Officia voluptates.
+            userID: Ad exercitationem facilis sit incidunt.
+          - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+            isActive: true
+            role:
+              id: Voluptas est.
+              isActive: false
+              name: Soluta qui aut et ut nisi autem.
+              serviceId: Veritatis quae hic unde non repudiandae.
+            roleID: Officia voluptates.
+            userID: Ad exercitationem facilis sit incidunt.
+          - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+            isActive: true
+            role:
+              id: Voluptas est.
+              isActive: false
+              name: Soluta qui aut et ut nisi autem.
+              serviceId: Veritatis quae hic unde non repudiandae.
+            roleID: Officia voluptates.
+            userID: Ad exercitationem facilis sit incidunt.
+    LoginRequestBody:
+      type: object
+      properties:
+        email:
+          type: string
+          description: User email
+          example: Tenetur id molestiae explicabo nemo neque.
+        password:
+          type: string
+          description: User password
+          example: Magnam qui placeat ullam architecto.
+      example:
+        email: Dolor voluptas ipsa.
+        password: Corporis architecto minima assumenda.
+      required:
+      - email
+      - password
+    MessageResult:
+      type: object
+      properties:
+        desc:
+          type: string
+          description: Message description
+          example: Inventore ea recusandae.
+        type:
+          type: string
+          description: Message type i.e. SUCCESS, ERROR
+          example: Quod laborum necessitatibus ea.
+      example:
+        desc: Magni nostrum natus ea est.
+        type: Sit quae est quis maiores beatae deserunt.
+    Pageinfo:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Count of returned record set
+          example: 4844979873334613615
+          format: int64
+        pageNumber:
+          type: integer
+          description: Page Number for returned resultset
+          example: 4908723517804645026
+          format: int64
+        pageSize:
+          type: integer
+          description: Page size for returned resultset
+          example: 5485671443356406610
+          format: int64
+        totalCount:
+          type: integer
+          description: Total Count for this query
+          example: 8644778342479824841
+          format: int64
+      example:
+        count: 8929176162486499337
+        pageNumber: 950687325264152394
+        pageSize: 2715034106524306822
+        totalCount: 1037152248390914957
+    Roleresult:
+      type: object
+      properties:
+        id:
+          type: string
+          description: role UUID
+          example: Eius dolores libero aut consequuntur cumque est.
+        isActive:
+          type: boolean
+          description: If record is active
+          example: false
+        name:
+          type: string
+          description: role name
+          example: Rerum ducimus sapiente harum voluptas voluptatem.
+        serviceId:
+          type: string
+          description: service UUID the role belongs to
+          example: Autem voluptates voluptatum quasi.
+      example:
+        id: Iusto est voluptatem ut.
+        isActive: true
+        name: Aut quaerat praesentium.
+        serviceId: Voluptas a.
+    SignupRequestBody:
+      type: object
+      properties:
+        email:
+          type: string
+          description: User email address
+          example: Et sit magni suscipit.
+      example:
+        email: Explicabo distinctio ut quo possimus ullam.
+      required:
+      - email
+    UpdateUsernameRequestBody:
+      type: object
+      properties:
+        name:
+          type: string
+          description: User name
+          example: Molestiae at eos dolorum voluptas.
+      example:
+        name: Voluptatem sint.
+      required:
+      - name
+    Userresult:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: AccessToken to authenticate user for next processes
+          example: Quis natus.
+        email:
+          type: string
+          description: User email
+          example: Quia dolores officiis.
+        hasAgreed:
+          type: boolean
+          description: If user has agreed terms & conditions
+          example: true
+        id:
+          type: string
+          description: User UUID
+          example: Et consectetur.
+        isActive:
+          type: boolean
+          description: If user is active
+          example: true
+        isVerified:
+          type: boolean
+          description: If user has been verified
+          example: true
+        name:
+          type: string
+          description: User name
+          example: Sit et voluptatem vitae quidem neque.
+        refreshToken:
+          type: string
+          description: RefreshToken to refresh auth token
+          example: Et reiciendis aut omnis.
+        roles:
+          $ref: '#/components/schemas/UserroleresultCollection'
+      example:
+        accessToken: Et est sequi.
+        email: Provident voluptatem deleniti voluptas.
+        hasAgreed: true
+        id: Culpa facere maiores expedita.
+        isActive: true
+        isVerified: true
+        name: Enim et velit.
+        refreshToken: Et ipsa accusamus quaerat.
+        roles:
+        - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+          isActive: true
+          role:
+            id: Voluptas est.
+            isActive: false
+            name: Soluta qui aut et ut nisi autem.
+            serviceId: Veritatis quae hic unde non repudiandae.
+          roleID: Officia voluptates.
+          userID: Ad exercitationem facilis sit incidunt.
+        - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+          isActive: true
+          role:
+            id: Voluptas est.
+            isActive: false
+            name: Soluta qui aut et ut nisi autem.
+            serviceId: Veritatis quae hic unde non repudiandae.
+          roleID: Officia voluptates.
+          userID: Ad exercitationem facilis sit incidunt.
+        - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+          isActive: true
+          role:
+            id: Voluptas est.
+            isActive: false
+            name: Soluta qui aut et ut nisi autem.
+            serviceId: Veritatis quae hic unde non repudiandae.
+          roleID: Officia voluptates.
+          userID: Ad exercitationem facilis sit incidunt.
+    UserresultCollection:
+      type: array
+      items:
+        $ref: '#/components/schemas/Userresult'
+      example:
+      - accessToken: Aut dolorem ipsam.
+        email: Et at et libero iusto earum.
+        hasAgreed: false
+        id: Reiciendis qui.
+        isActive: false
+        isVerified: true
+        name: Sint laboriosam qui quo iste.
+        refreshToken: Est in ut.
+        roles:
+        - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+          isActive: true
+          role:
+            id: Voluptas est.
+            isActive: false
+            name: Soluta qui aut et ut nisi autem.
+            serviceId: Veritatis quae hic unde non repudiandae.
+          roleID: Officia voluptates.
+          userID: Ad exercitationem facilis sit incidunt.
+        - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+          isActive: true
+          role:
+            id: Voluptas est.
+            isActive: false
+            name: Soluta qui aut et ut nisi autem.
+            serviceId: Veritatis quae hic unde non repudiandae.
+          roleID: Officia voluptates.
+          userID: Ad exercitationem facilis sit incidunt.
+        - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+          isActive: true
+          role:
+            id: Voluptas est.
+            isActive: false
+            name: Soluta qui aut et ut nisi autem.
+            serviceId: Veritatis quae hic unde non repudiandae.
+          roleID: Officia voluptates.
+          userID: Ad exercitationem facilis sit incidunt.
+      - accessToken: Aut dolorem ipsam.
+        email: Et at et libero iusto earum.
+        hasAgreed: false
+        id: Reiciendis qui.
+        isActive: false
+        isVerified: true
+        name: Sint laboriosam qui quo iste.
+        refreshToken: Est in ut.
+        roles:
+        - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+          isActive: true
+          role:
+            id: Voluptas est.
+            isActive: false
+            name: Soluta qui aut et ut nisi autem.
+            serviceId: Veritatis quae hic unde non repudiandae.
+          roleID: Officia voluptates.
+          userID: Ad exercitationem facilis sit incidunt.
+        - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+          isActive: true
+          role:
+            id: Voluptas est.
+            isActive: false
+            name: Soluta qui aut et ut nisi autem.
+            serviceId: Veritatis quae hic unde non repudiandae.
+          roleID: Officia voluptates.
+          userID: Ad exercitationem facilis sit incidunt.
+        - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+          isActive: true
+          role:
+            id: Voluptas est.
+            isActive: false
+            name: Soluta qui aut et ut nisi autem.
+            serviceId: Veritatis quae hic unde non repudiandae.
+          roleID: Officia voluptates.
+          userID: Ad exercitationem facilis sit incidunt.
+      - accessToken: Aut dolorem ipsam.
+        email: Et at et libero iusto earum.
+        hasAgreed: false
+        id: Reiciendis qui.
+        isActive: false
+        isVerified: true
+        name: Sint laboriosam qui quo iste.
+        refreshToken: Est in ut.
+        roles:
+        - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+          isActive: true
+          role:
+            id: Voluptas est.
+            isActive: false
+            name: Soluta qui aut et ut nisi autem.
+            serviceId: Veritatis quae hic unde non repudiandae.
+          roleID: Officia voluptates.
+          userID: Ad exercitationem facilis sit incidunt.
+        - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+          isActive: true
+          role:
+            id: Voluptas est.
+            isActive: false
+            name: Soluta qui aut et ut nisi autem.
+            serviceId: Veritatis quae hic unde non repudiandae.
+          roleID: Officia voluptates.
+          userID: Ad exercitationem facilis sit incidunt.
+        - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+          isActive: true
+          role:
+            id: Voluptas est.
+            isActive: false
+            name: Soluta qui aut et ut nisi autem.
+            serviceId: Veritatis quae hic unde non repudiandae.
+          roleID: Officia voluptates.
+          userID: Ad exercitationem facilis sit incidunt.
+    Userroleresult:
+      type: object
+      properties:
+        id:
+          type: string
+          description: UserRole UUID
+          example: Accusantium voluptatibus blanditiis quaerat et quia est.
+        isActive:
+          type: boolean
+          description: If record is active
+          example: true
+        role:
+          $ref: '#/components/schemas/Roleresult'
+        roleID:
+          type: string
+          description: Role UUID
+          example: Enim voluptatum.
+        userID:
+          type: string
+          description: User UUID
+          example: Ut veritatis expedita quia minus.
+      example:
+        id: Ut voluptatibus voluptas ipsam est distinctio dignissimos.
+        isActive: false
+        role:
+          id: Voluptas est.
+          isActive: false
+          name: Soluta qui aut et ut nisi autem.
+          serviceId: Veritatis quae hic unde non repudiandae.
+        roleID: Ullam laborum sit similique cumque sit velit.
+        userID: Temporibus nam iusto cumque.
+    UserroleresultCollection:
+      type: array
+      items:
+        $ref: '#/components/schemas/Userroleresult'
+      example:
+      - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+        isActive: true
+        role:
+          id: Voluptas est.
+          isActive: false
+          name: Soluta qui aut et ut nisi autem.
+          serviceId: Veritatis quae hic unde non repudiandae.
+        roleID: Officia voluptates.
+        userID: Ad exercitationem facilis sit incidunt.
+      - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+        isActive: true
+        role:
+          id: Voluptas est.
+          isActive: false
+          name: Soluta qui aut et ut nisi autem.
+          serviceId: Veritatis quae hic unde non repudiandae.
+        roleID: Officia voluptates.
+        userID: Ad exercitationem facilis sit incidunt.
+      - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+        isActive: true
+        role:
+          id: Voluptas est.
+          isActive: false
+          name: Soluta qui aut et ut nisi autem.
+          serviceId: Veritatis quae hic unde non repudiandae.
+        roleID: Officia voluptates.
+        userID: Ad exercitationem facilis sit incidunt.
+      - id: Cumque nesciunt natus alias sunt doloremque eligendi.
+        isActive: true
+        role:
+          id: Voluptas est.
+          isActive: false
+          name: Soluta qui aut et ut nisi autem.
+          serviceId: Veritatis quae hic unde non repudiandae.
+        roleID: Officia voluptates.
+        userID: Ad exercitationem facilis sit incidunt.
+    VerifyConfirmationTokenRequestBody:
+      type: object
+      properties:
+        confirmationToken:
+          type: integer
+          description: Confirmation token
+          example: 17787670108313184152
+        userId:
+          type: string
+          description: UserId
+          example: Nemo sequi eos id error.
+      example:
+        confirmationToken: 721388428113337951
+        userId: Dignissimos minus sed omnis incidunt voluptatibus.
+      required:
+      - userId
+      - confirmationToken
+    VerifyPasswordResetTokenRequestBody:
+      type: object
+      properties:
+        passwordResetToken:
+          type: integer
+          description: Password reset token
+          example: 12199287510603336682
+        userId:
+          type: string
+          description: UserId
+          example: Excepturi et placeat.
+      example:
+        passwordResetToken: 6287633839485190644
+        userId: Aut sit unde facilis voluptas.
+      required:
+      - userId
+      - passwordResetToken
+  securitySchemes:
+    jwt_header_Authorization:
+      type: http
+      scheme: bearer

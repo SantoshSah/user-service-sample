@@ -1,0 +1,15 @@
+# VIM
+*~
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.DB
+
+#local build
+*.env
+user
+!user/
+user-cli
+!user-cli/

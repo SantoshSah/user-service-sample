@@ -1,0 +1,370 @@
+// Code generated with goa v3.2.4, DO NOT EDIT.
+//
+// user_service protocol buffer definition
+//
+// Command:
+// $ goa gen github.com/SantoshSah/user-service-sample/design
+
+syntax = "proto3";
+
+package user_service;
+
+option go_package = "user_servicepb";
+
+// The user service manages users.
+service UserService {
+	// Signup implements signup.
+	rpc Signup (SignupRequest) returns (SignupResponse);
+	// VerifyConfirmationToken implements verifyConfirmationToken.
+	rpc VerifyConfirmationToken (VerifyConfirmationTokenRequest) returns (VerifyConfirmationTokenResponse);
+	// UpdateUsername implements updateUsername.
+	rpc UpdateUsername (UpdateUsernameRequest) returns (UpdateUsernameResponse);
+	// VerifyPasswordResetToken implements verifyPasswordResetToken.
+	rpc VerifyPasswordResetToken (VerifyPasswordResetTokenRequest) returns (VerifyPasswordResetTokenResponse);
+	// ResetPassword implements resetPassword.
+	rpc ResetPassword (ResetPasswordRequest) returns (ResetPasswordResponse);
+	// ChangePassword implements changePassword.
+	rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse);
+	// Login implements login.
+	rpc Login (LoginRequest) returns (LoginResponse);
+	// RefreshAccessToken implements refreshAccessToken.
+	rpc RefreshAccessToken (RefreshAccessTokenRequest) returns (RefreshAccessTokenResponse);
+	// Logout implements logout.
+	rpc Logout (LogoutRequest) returns (LogoutResponse);
+	// ListUsers implements listUsers.
+	rpc ListUsers (ListUsersRequest) returns (ListUsersResponse);
+}
+
+message SignupRequest {
+	// User email address
+	string email = 1;
+	// Tenant Header Name
+	string tenant = 2;
+}
+
+message SignupResponse {
+	// User UUID
+	string id = 1;
+	// User email
+	string email = 2;
+	// User name
+	string name = 3;
+	// If user has been verified
+	bool is_verified = 4;
+	// If user is active
+	bool is_active = 5;
+	// If user has agreed terms & conditions
+	bool has_agreed = 6;
+	// AccessToken to authenticate user for next processes
+	string access_token = 7;
+	// RefreshToken to refresh auth token
+	string refresh_token = 8;
+	// User roles
+	UserroleresultCollection roles = 9;
+}
+
+message UserroleresultCollection {
+	repeated Userroleresult field = 1;
+}
+
+message Userroleresult {
+	// UserRole UUID
+	string id = 1;
+	// User UUID
+	string user_id = 2;
+	// Role UUID
+	string role_id = 3;
+	// If record is active
+	bool is_active = 4;
+	// role detail
+	Roleresult role = 5;
+}
+
+message Roleresult {
+	// role UUID
+	string id = 1;
+	// role name
+	string name = 2;
+	// service UUID the role belongs to
+	string service_id = 3;
+	// If record is active
+	bool is_active = 4;
+}
+
+message VerifyConfirmationTokenRequest {
+	// UserId
+	string user_id = 1;
+	// Confirmation token
+	uint64 confirmation_token = 2;
+	// Tenant Header Name
+	string tenant = 3;
+}
+
+message VerifyConfirmationTokenResponse {
+	// User UUID
+	string id = 1;
+	// User email
+	string email = 2;
+	// User name
+	string name = 3;
+	// If user has been verified
+	bool is_verified = 4;
+	// If user is active
+	bool is_active = 5;
+	// If user has agreed terms & conditions
+	bool has_agreed = 6;
+	// AccessToken to authenticate user for next processes
+	string access_token = 7;
+	// RefreshToken to refresh auth token
+	string refresh_token = 8;
+	// User roles
+	UserroleresultCollection roles = 9;
+}
+
+message UpdateUsernameRequest {
+	// User name
+	string name = 2;
+	// Tenant Header Name
+	string tenant = 3;
+}
+
+message UpdateUsernameResponse {
+	// User UUID
+	string id = 1;
+	// User email
+	string email = 2;
+	// User name
+	string name = 3;
+	// If user has been verified
+	bool is_verified = 4;
+	// If user is active
+	bool is_active = 5;
+	// If user has agreed terms & conditions
+	bool has_agreed = 6;
+	// AccessToken to authenticate user for next processes
+	string access_token = 7;
+	// RefreshToken to refresh auth token
+	string refresh_token = 8;
+	// User roles
+	UserroleresultCollection roles = 9;
+}
+
+message VerifyPasswordResetTokenRequest {
+	// UserId
+	string user_id = 1;
+	// Password reset token
+	uint64 password_reset_token = 2;
+	// Tenant Header Name
+	string tenant = 3;
+}
+
+message VerifyPasswordResetTokenResponse {
+	// User UUID
+	string id = 1;
+	// User email
+	string email = 2;
+	// User name
+	string name = 3;
+	// If user has been verified
+	bool is_verified = 4;
+	// If user is active
+	bool is_active = 5;
+	// If user has agreed terms & conditions
+	bool has_agreed = 6;
+	// AccessToken to authenticate user for next processes
+	string access_token = 7;
+	// RefreshToken to refresh auth token
+	string refresh_token = 8;
+	// User roles
+	UserroleresultCollection roles = 9;
+}
+
+message ResetPasswordRequest {
+	// User email
+	string email = 1;
+	// Tenant Header Name
+	string tenant = 2;
+}
+
+message ResetPasswordResponse {
+	// User UUID
+	string id = 1;
+	// User email
+	string email = 2;
+	// User name
+	string name = 3;
+	// If user has been verified
+	bool is_verified = 4;
+	// If user is active
+	bool is_active = 5;
+	// If user has agreed terms & conditions
+	bool has_agreed = 6;
+	// AccessToken to authenticate user for next processes
+	string access_token = 7;
+	// RefreshToken to refresh auth token
+	string refresh_token = 8;
+	// User roles
+	UserroleresultCollection roles = 9;
+}
+
+message ChangePasswordRequest {
+	// User password
+	string password = 2;
+	// Tenant Header Name
+	string tenant = 3;
+}
+
+message ChangePasswordResponse {
+	// User UUID
+	string id = 1;
+	// User email
+	string email = 2;
+	// User name
+	string name = 3;
+	// If user has been verified
+	bool is_verified = 4;
+	// If user is active
+	bool is_active = 5;
+	// If user has agreed terms & conditions
+	bool has_agreed = 6;
+	// AccessToken to authenticate user for next processes
+	string access_token = 7;
+	// RefreshToken to refresh auth token
+	string refresh_token = 8;
+	// User roles
+	UserroleresultCollection roles = 9;
+}
+
+message LoginRequest {
+	// User email
+	string email = 1;
+	// User password
+	string password = 2;
+	// Tenant Header Name
+	string tenant = 3;
+}
+
+message LoginResponse {
+	// User UUID
+	string id = 1;
+	// User email
+	string email = 2;
+	// User name
+	string name = 3;
+	// If user has been verified
+	bool is_verified = 4;
+	// If user is active
+	bool is_active = 5;
+	// If user has agreed terms & conditions
+	bool has_agreed = 6;
+	// AccessToken to authenticate user for next processes
+	string access_token = 7;
+	// RefreshToken to refresh auth token
+	string refresh_token = 8;
+	// User roles
+	UserroleresultCollection roles = 9;
+}
+
+message RefreshAccessTokenRequest {
+	// Tenant Header Name
+	string tenant = 2;
+}
+
+message RefreshAccessTokenResponse {
+	// User UUID
+	string id = 1;
+	// User email
+	string email = 2;
+	// User name
+	string name = 3;
+	// If user has been verified
+	bool is_verified = 4;
+	// If user is active
+	bool is_active = 5;
+	// If user has agreed terms & conditions
+	bool has_agreed = 6;
+	// AccessToken to authenticate user for next processes
+	string access_token = 7;
+	// RefreshToken to refresh auth token
+	string refresh_token = 8;
+	// User roles
+	UserroleresultCollection roles = 9;
+}
+
+message LogoutRequest {
+	// Tenant Header Name
+	string tenant = 2;
+}
+
+message LogoutResponse {
+	// Message type i.e. SUCCESS, ERROR
+	string type = 1;
+	// Message description
+	string desc = 2;
+}
+
+message ListUsersRequest {
+	// User email for search
+	string email = 2;
+	// User mobile number for search
+	string mobile_number = 3;
+	// User name for search
+	string name = 4;
+	// If user is active
+	string is_active = 6;
+	// If user is verified
+	string is_verified = 7;
+	// If user has agreed
+	string has_agreed = 8;
+	// User Role
+	string role = 9;
+	// Page Number for search
+	sint32 page_number = 10;
+	// pageSize per page
+	sint32 page_size = 11;
+	// Tenant Header Name
+	string tenant = 13;
+}
+
+message ListUsersResponse {
+	// User Results
+	UserresultCollection results = 1;
+	// Pagination information
+	Pageinfo page_info = 2;
+}
+
+message UserresultCollection {
+	repeated Userresult field = 1;
+}
+
+message Userresult {
+	// User UUID
+	string id = 1;
+	// User email
+	string email = 2;
+	// User name
+	string name = 3;
+	// If user has been verified
+	bool is_verified = 4;
+	// If user is active
+	bool is_active = 5;
+	// If user has agreed terms & conditions
+	bool has_agreed = 6;
+	// AccessToken to authenticate user for next processes
+	string access_token = 7;
+	// RefreshToken to refresh auth token
+	string refresh_token = 8;
+	// User roles
+	UserroleresultCollection roles = 9;
+}
+
+message Pageinfo {
+	// Page Number for returned resultset
+	sint32 page_number = 1;
+	// Page size for returned resultset
+	sint32 page_size = 2;
+	// Count of returned record set
+	sint32 count = 3;
+	// Total Count for this query
+	sint64 total_count = 4;
+}
