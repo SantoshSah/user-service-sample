@@ -9,7 +9,7 @@ Thumbs.DB
 
 #local build
 *.env
-user
-!user/
-user-cli
-!user-cli/
+user_server
+!user_server/
+user_server-cli
+!user_server-cli/
