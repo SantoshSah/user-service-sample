@@ -1,9 +1,8 @@
-# Please note that this repo is for sample purpose used for demonstrating code strucuture. Though it builds successfully but can not be used in production. 
+# Please note that this repo is a sample project which is used for demonstrating code structure of micro services in Golang. Though it builds successfully, it can not be used in production.
 
 # Building server and client
  - to build server: go build ./cmd/user_server
  - to build client: go build ./cmd/user_server-cli
-
 
 # Local Testing: REST
 1) Register User
