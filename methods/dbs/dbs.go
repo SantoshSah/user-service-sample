@@ -38,7 +38,7 @@ func GetEnv(key, fallback string) string {
 
 // ConnectPostgresDB returns a postgres client
 func ConnectPostgresDB() *gorm.DB {
-	tenants := []string{"tenant1", "tenant_master", "tenant2"}
+	tenants := []string{"tenant_xyz", "tenant_master", "tenant_abc"}
 	newLogger := logger.New(
 		log.New(os.Stdout, "\r\n", log.LstdFlags), // io writer
 		logger.Config{
@@ -49,10 +49,11 @@ func ConnectPostgresDB() *gorm.DB {
 	)
 
 	// Setup CRDB
-	crdbConnStrTenant1 := os.Getenv("CRDB_CONNECTION_STRING_TENANT1")
-	dns_tenant1 := strings.Replace(crdbConnStrTenant1, "\"", "", -1)
+	// Default connection
+	crdbConnStrXYZ := os.Getenv("CRDB_CONNECTION_STRING_XYZ")
+	dns_tenant_xyz := strings.Replace(crdbConnStrXYZ, "\"", "", -1)
 	PostgresDB, err := gorm.Open(postgres.New(postgres.Config{
-		DSN:                  dns_tenant1,
+		DSN:                  dns_tenant_xyz,
 		PreferSimpleProtocol: true,
 	}), &gorm.Config{
 		Logger: newLogger,
@@ -81,7 +82,7 @@ func ConnectPostgresDB() *gorm.DB {
 		}, tenants[2]))
 
 	if err != nil {
-		log.Println("Error initialising crdb:", dns_tenant1, err)
+		log.Println("Error initialising crdb:", dns_tenant_xyz, err)
 	}
 
 	// Migrate the schema
